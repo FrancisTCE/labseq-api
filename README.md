@@ -74,25 +74,12 @@ The `LabseqController` class is responsible for handling requests for the labseq
  Dockerfile for the Spring Boot application:
 
 ```
-FROM openjdk:19-jdk-alpine
-
-WORKDIR /app
-
-COPY ./build/libs/app.jar /app/app.jar
-
-EXPOSE 8080
-
-CMD ["java", "-jar", "app.jar"]
-​
-FROM openjdk:19-jdk-alpine
-​
-WORKDIR /app
-​
-COPY ./build/libs/app.jar /app/app.jar
-​
-EXPOSE 8080
-​
-CMD ["java", "-jar", "app.jar"]
+FROM eclipse-temurin:19-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+EXPOSE 8080:8080
+ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
 This Dockerfile will create an image that is based on the openjdk:19-jdk-alpine image. The image will have the app.jar file copied into the /app directory. The port 8080 will be exposed, and the image will be configured to run the java -jar command to start the app.jar file.
@@ -101,7 +88,7 @@ To build the image, you can use the following command:
 
 
 ```
-docker build -t labseq:latest .
+docker build -t labseq:site1 --build-arg JAR_FILE=target/*.jar .
 ```
 
 
@@ -109,5 +96,4 @@ To run the image, you can use the following command:
 
 
 ```
-docker run -p 8080:8080 labseq:latest
-
+docker run -d -p 8080:8080 labseq:site1
