@@ -46,6 +46,14 @@ This command will return the following response:
 {"LabseqN": 4}
 ```
 
+In case you are running a frontend, make sure its on :4200 since its what is configured as expected.
+
+```
+registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200/")
+                .allowedMethods("GET", "POST");
+```
+
 The labseq application also includes a caching layer. The cache is used to store the results of previously calculated labseq values. This can improve performance for subsequent requests for the same value.
 
 The cache is implemented using the `LabseqCaching` class. The `LabseqCaching` class provides methods for storing and retrieving values from the cache.
