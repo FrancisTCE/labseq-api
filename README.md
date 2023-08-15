@@ -68,3 +68,46 @@ The cache is implemented using the `LabseqCaching` class. The `LabseqCaching` cl
 The `LabseqService` class is responsible for calculating the labseq value. The `LabseqService` class first checks the cache to see if the value has already been calculated. If the value is not in the cache, the `LabseqService` class calculates the value and stores it in the cache.
 
 The `LabseqController` class is responsible for handling requests for the labseq function. The `LabseqController` class uses the `LabseqService` class to calculate the labseq value and returns the result to the client.
+
+#Docker
+
+ Dockerfile for the Spring Boot application:
+
+```
+FROM openjdk:19-jdk-alpine
+
+WORKDIR /app
+
+COPY ./build/libs/app.jar /app/app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]
+​
+FROM openjdk:19-jdk-alpine
+​
+WORKDIR /app
+​
+COPY ./build/libs/app.jar /app/app.jar
+​
+EXPOSE 8080
+​
+CMD ["java", "-jar", "app.jar"]
+```
+
+This Dockerfile will create an image that is based on the openjdk:19-jdk-alpine image. The image will have the app.jar file copied into the /app directory. The port 8080 will be exposed, and the image will be configured to run the java -jar command to start the app.jar file.
+
+To build the image, you can use the following command:
+
+
+```
+docker build -t labseq:latest .
+```
+
+
+To run the image, you can use the following command:
+
+
+```
+docker run -p 8080:8080 labseq:latest
+
