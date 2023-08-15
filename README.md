@@ -101,7 +101,7 @@ To build the image, you can use the following command:
 
 
 ```
-docker build -t my-app:latest .
+docker build -t labseq:latest .
 ```
 
 
@@ -109,5 +109,5 @@ To run the image, you can use the following command:
 
 
 ```
-docker run -p 8080:8080 my-app:latest
+docker run -p 8080:8080 labseq:latest
 ​```
