@@ -120,3 +120,12 @@ Angular docker commands:
 docker build -t frontend:site1 .
 docker run -d -p 4200:80 frontend:site1
 docker stop $(docker ps -a -q)
+```
+
+Docker pulls:
+```
+Frontend: docker pull franciscte/frontend:site1
+Backend: docker pull franciscte/labseq
+```
+
+
