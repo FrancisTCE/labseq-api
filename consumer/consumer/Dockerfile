@@ -14,4 +14,6 @@ EXPOSE 4200
 
 CMD ["npm", "start"]
 
-#docker run -p 4200:4200 my-angular-app
+#docker build -t frontend:site1 .
+#docker run -d -p 4200:4200 frontend:site1
+#docker stop $(docker ps -a -q)
