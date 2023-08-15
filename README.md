@@ -4,9 +4,28 @@ labseq rest api
 The labseq application is a RESTful API that calculates the labseq function. The labseq function is defined as follows:
 
 ```
-labseq(n) = 
-    0 if n <= 3
-    labseq(n - 4) + labseq(n - 3) if n > 3
+The labseq – l(n) - sequence is defined as follows:
+n=0 => l(0) = 0
+n=1 => l(1) = 1
+n=2 => l(2) = 0
+n=3 => l(3) = 1
+n>3 => l(n) = l(n-4) + l(n-3)
+
+LabseqCaching cache = new LabseqCaching();
+
+    public int labSeq(int n){
+        
+        // if value is in cache, return the cached value
+        if(cache.valueIsCached(n)) return cache.getCachedKey(n);
+        
+        if(n <= 3) return (n % 2 == 0) ? 0 : 1;
+        
+        int newValue = labSeq(n - 4) + labSeq(n - 3);
+        
+        cache.putCachedKey(n, newValue);
+
+        return newValue;
+    }
 ```
 
 The application is built using the Spring Boot framework. To run the application, you can use the following command:
