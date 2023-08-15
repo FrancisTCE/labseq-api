@@ -1,3 +1,7 @@
+/**
+* @author Francisco Ferreira
+*/
+
 package com.labseq.labseq.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +12,7 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("**")
+                .allowedOrigins("http://localhost:4200/")
                 .allowedMethods("GET", "POST");
     }
 }

@@ -1,0 +1,26 @@
+<html>
+  <body>
+    <h1>Labseq Altice Labs</h1>
+    <h4>Please insert non-negative Integer and click Submit.</h4>
+    <div class="panel">
+      <input pInputText pKeyFilter="int" placeholder="Integers" placeholder="Large" [(ngModel)]="value"  />
+      <p-button (onClick)="sendRequest()" class="button" label="Submit"></p-button>
+    </div>
+    <p-divider></p-divider>
+    <div>
+      <h1>History</h1>
+      <p>You can check below the history of the requests and some other details. Each tab is a request.</p>
+      <div *ngFor="let payload of payloadsArray">
+        <p-accordion>
+          <p-accordionTab header="GET Request Details: {{payload['Timestamp']}}">
+              <p>
+                Timestamp: {{payload['Timestamp']}}
+              </p>
+              <p>Calculated Value = {{payload['LabseqN']}}</p>
+              <p>Server processing time in ns = {{payload['processingTime']}}</p>
+          </p-accordionTab>
+      </p-accordion>
+    </div>
+    </div>
+  </body>
+</html>

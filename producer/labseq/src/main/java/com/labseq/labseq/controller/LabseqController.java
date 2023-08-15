@@ -1,5 +1,6 @@
 package com.labseq.labseq.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import org.springframework.http.HttpStatus;
@@ -35,9 +36,7 @@ public class LabseqController {
     })
     @GetMapping(value = "{n}")
     @ResponseBody
-    public ResponseEntity<String> labseq(
-                                        @PathVariable int n
-                                        ){
+    public ResponseEntity<String> labseq(@PathVariable int n){
     
         HashMap<String, Object> res = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
@@ -48,10 +47,16 @@ public class LabseqController {
         
         try {
             LabseqService labseqService = new LabseqService();
+            String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.ms").format(new java.util.Date()); 
             long startTime = System.nanoTime();
-            res.put("N", labseqService.labSeq(n));
+
+            System.out.println(timeStamp + " GET REQUEST N = " + n);
+            
+            res.put("LabseqN", labseqService.labSeq(n));
             long endTime   = System.nanoTime();
-            res.put("processingTime (ns)", endTime - startTime);
+
+            res.put("processingTime", endTime - startTime);
+            res.put("Timestamp", timeStamp);
             return new ResponseEntity<String>(
                 mapper.writeValueAsString(res), 
                 HttpStatus.resolve(200)
