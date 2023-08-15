@@ -51,7 +51,7 @@ In case you are running a frontend, make sure its on :4200 since its what is con
 ```
 registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200/")
-                .allowedMethods("GET", "POST");
+                .allowedMethods("GET");
 ```
 
 Swagger URL 
