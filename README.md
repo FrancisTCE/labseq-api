@@ -110,4 +110,4 @@ To run the image, you can use the following command:
 
 ```
 docker run -p 8080:8080 labseq:latest
-​```
+
