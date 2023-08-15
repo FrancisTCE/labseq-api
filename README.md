@@ -4,13 +4,14 @@ labseq rest api
 The labseq application is a RESTful API that calculates the labseq function. The labseq function is defined as follows:
 
 ```
-The labseq – l(n) - sequence is defined as follows:
+Definition:
 n=0 => l(0) = 0
 n=1 => l(1) = 1
 n=2 => l(2) = 0
 n=3 => l(3) = 1
 n>3 => l(n) = l(n-4) + l(n-3)
 
+Code:
 LabseqCaching cache = new LabseqCaching();
 
     public int labSeq(int n){
