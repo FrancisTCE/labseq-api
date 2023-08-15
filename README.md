@@ -97,3 +97,26 @@ To run the image, you can use the following command:
 
 ```
 docker run -d -p 8080:8080 labseq:site1
+```
+
+ Dockerfile for the angular application:
+```
+FROM node:latest as node
+WORKDIR /app
+COPY . .
+RUN npm install --silent
+RUN npm run build 
+
+FROM nginx:latest
+
+COPY --from=node /app/dist/consumer /usr/share/nginx/html
+COPY ./config/nginx.conf /etc/ngix/conf.d/default.conf
+```
+
+Angular docker commands:
+
+
+```
+docker build -t frontend:site1 .
+docker run -d -p 4200:80 frontend:site1
+docker stop $(docker ps -a -q)
